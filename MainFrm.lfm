@@ -47,11 +47,29 @@ object frmMain: TfrmMain
     TabStop = True
   end
   object mnMain: TMainMenu
-    left = 99
-    top = 74
+    left = 80
+    top = 120
     object miFile: TMenuItem
       Caption = 'File'
+      object miNew: TMenuItem
+        Caption = 'New...'
+      end
+      object miOpen: TMenuItem
+        Caption = 'Open...'
+      end
+      object miSaveAs: TMenuItem
+        Caption = 'Save as...'
+      end
       object miFileSep01: TMenuItem
+        Caption = '-'
+      end
+      object miPrinterSetup: TMenuItem
+        Caption = 'Printer Setup...'
+      end
+      object miPageSetup: TMenuItem
+        Caption = 'Page Setup...'
+      end
+      object miFileSep02: TMenuItem
         Caption = '-'
       end
       object miExit: TMenuItem
@@ -66,8 +84,8 @@ object frmMain: TfrmMain
     end
   end
   object alActions: TActionList
-    left = 224
-    top = 48
+    left = 80
+    top = 176
     object acFileExit: TFileExit
       Category = 'File'
       Caption = 'Exit'

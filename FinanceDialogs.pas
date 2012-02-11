@@ -33,15 +33,11 @@ type
 
   TCustomDialog = class
   private
-    FHeight: integer;
-    FWidth: integer;
     FOnCanClose: TCloseQueryEvent;
     FOnClose : TNotifyEvent;
     FOnShow: TNotifyEvent;
     FTitle : string;
     FHelpContext: THelpContext;
-    procedure SetHeight(const AValue: integer);
-    procedure SetWidth(const AValue: integer);
     function DoExecute : boolean; virtual;
     procedure DoShow; virtual;
     procedure DoCanClose(var CanClose: Boolean); virtual;
@@ -62,8 +58,6 @@ type
     property OnCanClose: TCloseQueryEvent read FOnCanClose write FOnCanClose;
     property OnShow: TNotifyEvent read FOnShow write FOnShow;
     property HelpContext: THelpContext read FHelpContext write FHelpContext default 0;
-    property Width: integer read FWidth write SetWidth default 0;
-    property Height: integer read FHeight write SetHeight default 0;
     property Title: string read FTitle write FTitle;
   end;
 
@@ -144,18 +138,6 @@ resourcestring
 
 { TCustomDialog }
 
-procedure TCustomDialog.SetHeight(const AValue: integer);
-begin
-  if FHeight=AValue then exit;
-  FHeight:=AValue;
-end;
-
-procedure TCustomDialog.SetWidth(const AValue: integer);
-begin
-  if FWidth=AValue then exit;
-  FWidth:=AValue;
-end;
-
 function TCustomDialog.DefaultTitle: string;
 begin
   Result:= '';
@@ -164,10 +146,6 @@ end;
 procedure TCustomDialog.SetPropertiesOnDialog;
 begin
   Dialog.Caption:= Title;
-  if Height <> 0 then
-    Dialog.Height:= Height;
-  if Width <> 0 then
-    Dialog.Width:= Width;
 end;
 
 procedure TCustomDialog.GetPropertiesFromDialog;

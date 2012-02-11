@@ -16,6 +16,12 @@ type
     acHelpAbout: TAction;
     alActions: TActionList;
     acFileExit: TFileExit;
+    miFileSep02: TMenuItem;
+    miOpen: TMenuItem;
+    miNew: TMenuItem;
+    miSaveAs: TMenuItem;
+    miPageSetup: TMenuItem;
+    miPrinterSetup: TMenuItem;
     miExit: TMenuItem;
     miFileSep01: TMenuItem;
     miAbout: TMenuItem;
