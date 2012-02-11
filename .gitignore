@@ -1,6 +1,4 @@
 *.lps
-*.mine
 lib/*
 backup/*
-references/*
 !.gitignore

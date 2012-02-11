@@ -1,0 +1,8 @@
+object SecurityEditorDialog: TSecurityEditorDialog
+  Left = 366
+  Height = 240
+  Top = 205
+  Width = 320
+  Caption = 'SecurityEditorDialog'
+  LCLVersion = '0.9.31'
+end

@@ -1,4 +1,4 @@
-unit TransactionDlg;
+unit SecurityDlg;
 
 {$mode objfpc}{$H+}
 
@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs;
 
 type
-  TTransactionEditorDialog = class(TForm)
+  TSecurityEditorDialog = class(TForm)
   private
     { private declarations }
   public
@@ -16,7 +16,7 @@ type
   end;
 
 var
-  TransactionEditorDialog: TTransactionEditorDialog;
+  SecurityEditorDialog: TSecurityEditorDialog;
 
 implementation
 

@@ -1,0 +1,8 @@
+object CurrencyEditorDialog: TCurrencyEditorDialog
+  Left = 623
+  Height = 240
+  Top = 370
+  Width = 320
+  Caption = 'CurrencyEditorDialog'
+  LCLVersion = '0.9.31'
+end

@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 463
+  Left = 471
   Height = 410
-  Top = 233
+  Top = 237
   Width = 458
   Caption = 'frmMain'
   ClientHeight = 384
@@ -19,7 +19,6 @@ object frmMain: TfrmMain
     RowSelect = True
     ScrollBars = ssAutoBoth
     TabOrder = 0
-    OnChanging = tvNavigatorChanging
     OnClick = tvNavigatorClick
     Options = [tvoAutoItemHeight, tvoHideSelection, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
     Items.Data = {
@@ -51,34 +50,40 @@ object frmMain: TfrmMain
     top = 120
     object miFile: TMenuItem
       Caption = 'File'
-      object miNew: TMenuItem
+      object miFileNew: TMenuItem
         Caption = 'New...'
       end
-      object miOpen: TMenuItem
+      object miFileOpen: TMenuItem
         Caption = 'Open...'
       end
-      object miSaveAs: TMenuItem
+      object miFileSaveAs: TMenuItem
         Caption = 'Save as...'
       end
       object miFileSep01: TMenuItem
         Caption = '-'
       end
-      object miPrinterSetup: TMenuItem
+      object miFilePrinterSetup: TMenuItem
         Caption = 'Printer Setup...'
       end
-      object miPageSetup: TMenuItem
+      object miFilePageSetup: TMenuItem
         Caption = 'Page Setup...'
       end
       object miFileSep02: TMenuItem
         Caption = '-'
       end
-      object miExit: TMenuItem
+      object miFileExit: TMenuItem
         Caption = 'Exit'
       end
     end
     object miHelp: TMenuItem
       Caption = 'Help'
-      object miAbout: TMenuItem
+      object miHelpHelp: TMenuItem
+        Caption = 'Help...'
+      end
+      object miHelpSep01: TMenuItem
+        Caption = '-'
+      end
+      object miHelpAbout: TMenuItem
         Action = acHelpAbout
       end
     end

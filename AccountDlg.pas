@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs;
 
 type
-  TfmAccountDialog = class(TForm)
+  TAccountEditorDialog = class(TForm)
   private
     { private declarations }
   public
@@ -16,7 +16,7 @@ type
   end;
 
 var
-  fmAccountDialog: TfmAccountDialog;
+  AccountEditorDialog: TAccountEditorDialog;
 
 implementation
 

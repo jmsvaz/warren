@@ -1,4 +1,4 @@
-unit TransactionDlg;
+unit PayeeDlg;
 
 {$mode objfpc}{$H+}
 
@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs;
 
 type
-  TTransactionEditorDialog = class(TForm)
+  TPayeeEditorDialog = class(TForm)
   private
     { private declarations }
   public
@@ -16,7 +16,7 @@ type
   end;
 
 var
-  TransactionEditorDialog: TTransactionEditorDialog;
+  PayeeEditorDialog: TPayeeEditorDialog;
 
 implementation
 
