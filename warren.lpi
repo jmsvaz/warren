@@ -72,9 +72,9 @@
     </RequiredPackages>
     <Units Count="10">
       <Unit0>
-        <Filename Value="finance.lpr"/>
+        <Filename Value="warren.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="finance"/>
+        <UnitName Value="warren"/>
       </Unit0>
       <Unit1>
         <Filename Value="MainFrm.pas"/>
