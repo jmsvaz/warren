@@ -1,12 +1,13 @@
-object frmMain: TfrmMain
+object MainForm: TMainForm
   Left = 471
   Height = 410
   Top = 237
   Width = 458
-  Caption = 'frmMain'
+  Caption = 'MainForm'
   ClientHeight = 384
   ClientWidth = 458
   Menu = mnMain
+  OnShow = FormShow
   LCLVersion = '0.9.31'
   object tvNavigator: TTreeView
     Left = 0

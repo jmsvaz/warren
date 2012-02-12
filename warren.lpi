@@ -3,6 +3,9 @@
   <ProjectOptions>
     <Version Value="9"/>
     <General>
+      <Flags>
+        <MainUnitHasUsesSectionForAllUnits Value="False"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <AutoCreateForms Value="False"/>
@@ -70,7 +73,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="warren.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -79,7 +82,7 @@
       <Unit1>
         <Filename Value="MainFrm.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmMain"/>
+        <ComponentName Value="MainForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainFrm"/>
       </Unit1>
@@ -99,9 +102,9 @@
         <UnitName Value="AboutDlg"/>
       </Unit3>
       <Unit4>
-        <Filename Value="FinanceDialogs.pas"/>
+        <Filename Value="ProgramDialogs.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="FinanceDialogs"/>
+        <UnitName Value="ProgramDialogs"/>
       </Unit4>
       <Unit5>
         <Filename Value="TransactionDlg.pas"/>
@@ -145,6 +148,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WelcomeDlg"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="dmMain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModule1"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmMain"/>
+      </Unit11>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -1,8 +1,74 @@
 object WelcomeDialog: TWelcomeDialog
-  Left = 366
-  Height = 240
-  Top = 205
-  Width = 320
-  Caption = 'WelcomeDialog'
+  Left = 354
+  Height = 260
+  Top = 316
+  Width = 687
+  BorderStyle = bsDialog
+  Caption = 'Welcome'
+  ClientHeight = 260
+  ClientWidth = 687
+  Position = poDesktopCenter
   LCLVersion = '0.9.31'
+  object btCreateNew: TButton
+    Left = 480
+    Height = 33
+    Top = 39
+    Width = 185
+    Caption = 'Create New...'
+    TabOrder = 0
+  end
+  object btOpen: TButton
+    Left = 481
+    Height = 33
+    Top = 88
+    Width = 185
+    Caption = 'Open...'
+    OnClick = btOpenClick
+    TabOrder = 1
+  end
+  object btViewHelp: TButton
+    Left = 481
+    Height = 33
+    Top = 136
+    Width = 185
+    Caption = 'View Help...'
+    TabOrder = 2
+  end
+  object btExit: TButton
+    Left = 481
+    Height = 33
+    Top = 184
+    Width = 185
+    Caption = 'Exit'
+    ModalResult = 2
+    OnClick = btExitClick
+    TabOrder = 3
+  end
+  object imLogo: TImage
+    Left = 26
+    Height = 178
+    Top = 39
+    Width = 178
+  end
+  object lbWebsite: TLabel
+    Cursor = crHandPoint
+    Left = 216
+    Height = 16
+    Top = 200
+    Width = 256
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'http://github.com/jmsvaz/warren'
+    Font.Color = clBlue
+    Font.Height = 12
+    Font.Style = [fsUnderline]
+    Layout = tlCenter
+    ParentColor = False
+    ParentFont = False
+    OptimalFill = True
+  end
+  object OpenDialog: TOpenDialog
+    left = 480
+    top = 224
+  end
 end

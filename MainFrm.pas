@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TfrmMain }
+  { TMainForm }
 
-  TfrmMain = class(TForm)
+  TMainForm = class(TForm)
     acHelpAbout: TAction;
     alActions: TActionList;
     acFileExit: TFileExit;
@@ -34,41 +34,37 @@ type
     spVerticalSplitter: TSplitter;
     tvNavigator: TTreeView;
     procedure acHelpAboutExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure tvNavigatorClick(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
+    FileName: string;
   end;
 
 var
-  frmMain: TfrmMain;
+  MainForm: TMainForm;
 
 implementation
 
-uses FinanceDialogs, AccountDlg;
+uses ProgramDialogs, dmMain;
 
 {$R *.lfm}
 
-{ TfrmMain }
+{ TMainForm }
 
-procedure TfrmMain.tvNavigatorClick(Sender: TObject);
+procedure TMainForm.tvNavigatorClick(Sender: TObject);
 begin
   if not Assigned(tvNavigator.Selected) then exit;
   ShowMessage(tvNavigator.Selected.Text);
 
-  with TAccountEditorDialog.Create(nil) do
-    try
-      ShowModal;
-    finally
-      Free;
-    end;
 
 
 
 end;
 
-procedure TfrmMain.acHelpAboutExecute(Sender: TObject);
+procedure TMainForm.acHelpAboutExecute(Sender: TObject);
 begin
   with TAboutBoxDialog.Create do
     try
@@ -76,6 +72,17 @@ begin
       Execute;
     finally
       Free;
+    end;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  if dmMain.LoadFile(FileName) then
+    Caption:= Application.Title + ' - ' + FileName
+  else
+    begin
+      ShowMessage('Erro ao carregar o arquivo');
+      Close;
     end;
 end;
 

@@ -18,7 +18,7 @@
 
 }
 
-unit FinanceDialogs;
+unit ProgramDialogs;
 
 {$mode objfpc}{$H+}
 
@@ -127,13 +127,27 @@ type
     property Info: TStrings read fInfo write SetInfo;
   end;
 
+function GetAFileName: string;
 
 implementation
 
-uses AboutDlg;
+uses AboutDlg, WelcomeDlg;
 
 resourcestring
   sAboutBoxCaption = 'About %s';
+
+
+
+function GetAFileName: string;
+begin
+  with TWelcomeDialog.Create(nil) do
+    try
+      if ShowModal = mrOK then
+        Result:= FileName;
+    finally
+      Release;
+    end;
+end;
 
 
 { TCustomDialog }
@@ -371,6 +385,7 @@ begin
   fInfo.Free;
   inherited Destroy;
 end;
+
 
 
 
