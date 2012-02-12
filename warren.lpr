@@ -26,7 +26,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  SysUtils, Forms, MainFrm, ProgramDialogs;
+  SysUtils, Forms, MainFrm, dmMain, ProgramDialogs;
 
 {$R *.res}
 
@@ -35,6 +35,7 @@ begin
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(Tdm, dm);
 
   if ParamCount > 0 then
     MainForm.FileName:= ParamStr(1)  //TODO: test this!!!
