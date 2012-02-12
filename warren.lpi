@@ -18,6 +18,9 @@
       <EnableI18N LFM="False"/>
     </i18n>
     <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MinorVersionNr Value="1"/>
+      <Language Value="0809"/>
       <StringTable ProductVersion=""/>
     </VersionInfo>
     <MacroValues Count="1">
@@ -73,7 +76,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="12">
+    <Units Count="14">
       <Unit0>
         <Filename Value="warren.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -94,67 +97,77 @@
         <UnitName Value="AccountDlg"/>
       </Unit2>
       <Unit3>
-        <Filename Value="AboutDlg.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="AboutDialog"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="AboutDlg"/>
-      </Unit3>
-      <Unit4>
         <Filename Value="ProgramDialogs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ProgramDialogs"/>
-      </Unit4>
-      <Unit5>
+      </Unit3>
+      <Unit4>
         <Filename Value="TransactionDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="TransactionEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TransactionDlg"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="CurrencyDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CurrencyEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CurrencyDlg"/>
-      </Unit6>
-      <Unit7>
+      </Unit5>
+      <Unit6>
         <Filename Value="SecurityDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SecurityEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SecurityDlg"/>
-      </Unit7>
-      <Unit8>
+      </Unit6>
+      <Unit7>
         <Filename Value="PayeeDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PayeeEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="PayeeDlg"/>
-      </Unit8>
-      <Unit9>
+      </Unit7>
+      <Unit8>
         <Filename Value="CategoryDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CategoryEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CategoryDlg"/>
-      </Unit9>
-      <Unit10>
+      </Unit8>
+      <Unit9>
         <Filename Value="WelcomeDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="WelcomeDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WelcomeDlg"/>
-      </Unit10>
-      <Unit11>
+      </Unit9>
+      <Unit10>
         <Filename Value="dmMain.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dm"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmMain"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="AboutDlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AboutBox"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="AboutDlg"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="ProgramStrings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ProgramStrings"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="versioninfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VersionInfo"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

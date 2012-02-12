@@ -1,6 +1,7 @@
 {
-This file is part of Rifas - a raffle generator program.
-Copyright (C) 2011 João Marcelo S. Vaz
+This file is part of Warren, a personal finance software.
+
+Copyright (C) 2011,2012 João Marcelo S. Vaz
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

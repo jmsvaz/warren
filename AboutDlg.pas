@@ -1,21 +1,20 @@
 {
-    Copyright (C) 2010-2012 João Marcelo S. Vaz
+Copyright (C) 2012 João Marcelo S. Vaz
 
-    This file is part of jmUtils.
+This file is part of Warren, a personal finance software.
 
-    jmUtils is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    jmUtils is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 unit AboutDlg;
@@ -25,61 +24,73 @@ unit AboutDlg;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, ComCtrls;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ExtCtrls;
 
 type
 
-  { TAboutDialog }
+  { TAboutBox }
 
-  TAboutDialog = class(TForm)
+  TAboutBox = class(TForm)
+    btOK: TButton;
+    btLicense: TButton;
+    imIcon: TImage;
     lbCopyright: TLabel;
-    lbHomePage: TLabel;
-    mmHistory: TMemo;
+    lbHomepage: TLabel;
+    lbTitle: TLabel;
     mmInfo: TMemo;
-    mmCredits: TMemo;
-    mmLicense: TMemo;
-    mmAbout: TMemo;
-    PageControl: TPageControl;
-    ProgramIcon: TImage;
-    lbProgramVersion: TLabel;
-    lbProgramTitle: TLabel;
-    tsHistory: TTabSheet;
-    tsInfo: TTabSheet;
-    tsLicense: TTabSheet;
-    tsCredits: TTabSheet;
-    tsAbout: TTabSheet;
+    pnAboutBox: TPanel;
+    procedure btLicenseClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure lbHomePageClick(Sender: TObject);
+    procedure lbHomepageClick(Sender: TObject);
+    procedure lbTitleDblClick(Sender: TObject);
   private
     { private declarations }
+    LicenseFile: string;
   public
     { public declarations }
-  end;
-
-var
-  AboutDialog: TAboutDialog;
+  end; 
 
 implementation
 
+uses LCLIntf, ProgramStrings;
+
 {$R *.lfm}
 
-uses  LCLIntf;
+{ TAboutBox }
 
-{ TAboutDialog }
-
-procedure TAboutDialog.FormShow(Sender: TObject);
+procedure TAboutBox.FormShow(Sender: TObject);
 begin
-  PageControl.ActivePage:= tsAbout;
+  btLicense.Enabled:= FileExists(LicenseFile);
+  Caption:= Format(sAboutDialogCaption,[Application.Title]);
+  lbTitle.Caption:= GetApplicationFullTitle;
+//  imIcon.Picture.Assign(Application.Icon);
+  lbCopyright.Caption:=  sCopyright;
+  lbHomepage.Caption:= sHomepage;
+  mmInfo.Lines.Clear;
+  mmInfo.Lines.Add(sLicenseIntro);
+  mmInfo.Lines.Add('');
+  mmInfo.Lines.Add(sAsIs);
 
-  ProgramIcon.Picture.Icon:= Application.Icon;
+  ShowMessage(IntToStr(mmInfo.Lines.Count));
 end;
 
-procedure TAboutDialog.lbHomePageClick(Sender: TObject);
+procedure TAboutBox.btLicenseClick(Sender: TObject);
 begin
-  OpenURL(lbHomePage.Caption);
+  OpenDocument(GetLicenseFile);
 end;
 
+procedure TAboutBox.lbHomepageClick(Sender: TObject);
+begin
+  OpenURL(lbHomepage.Caption);
+end;
+
+procedure TAboutBox.lbTitleDblClick(Sender: TObject);
+begin
+  ShowMessage(GetApplicationInfo);
+end;
 
 end.
+
+
 

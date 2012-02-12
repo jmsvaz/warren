@@ -38,7 +38,7 @@ begin
   Application.CreateForm(Tdm, dm);
 
   if ParamCount > 0 then
-    MainForm.FileName:= ParamStr(1)  //TODO: test this!!!
+    MainForm.FileName:= ParamStr(1)
   else
     MainForm.FileName:= ProgramDialogs.GetAFileName;
 

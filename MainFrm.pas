@@ -67,7 +67,7 @@ var
 
 implementation
 
-uses ProgramDialogs, dmMain;
+uses ProgramDialogs, dmMain,      AboutDlg;
 
 {$R *.lfm}
 
@@ -85,12 +85,11 @@ end;
 
 procedure TMainForm.acHelpAboutExecute(Sender: TObject);
 begin
-  with TAboutBoxDialog.Create do
+  with TAboutBox.Create(nil) do
     try
-      // fill properties
-      Execute;
+      ShowModal
     finally
-      Free;
+      Release;
     end;
 end;
 

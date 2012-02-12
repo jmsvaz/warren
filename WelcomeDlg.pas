@@ -38,9 +38,12 @@ type
     btViewHelp: TButton;
     imLogo: TImage;
     lbWebsite: TLabel;
+    lbTitle: TLabel;
+    lbCopyright: TLabel;
     OpenDialog: TOpenDialog;
     procedure btExitClick(Sender: TObject);
     procedure btOpenClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { private declarations }
   public
@@ -50,6 +53,8 @@ type
 
 
 implementation
+
+uses ProgramStrings;
 
 {$R *.lfm}
 
@@ -67,6 +72,14 @@ begin
       FileName:= OpenDialog.FileName;
       ModalResult:= mrOK;
     end;
+end;
+
+procedure TWelcomeDialog.FormCreate(Sender: TObject);
+begin
+  Caption:= Format(sWelcomeDialogCaption,[Application.Title]);
+  lbTitle.Caption:= GetApplicationFullTitle;
+  lbCopyright.Caption:= sCopyright;
+  lbWebsite.Caption:= sHomepage;
 end;
 
 end.
