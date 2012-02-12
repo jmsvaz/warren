@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, MainFrm, AccountDlg, AboutDlg, FinanceDialogs, TransactionDlg,
-  CurrencyDlg, SecurityDlg, PayeeDlg, CategoryDlg;
+  CurrencyDlg, SecurityDlg, PayeeDlg, CategoryDlg, WelcomeDlg;
 
 {$R *.res}
 

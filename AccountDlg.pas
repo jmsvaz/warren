@@ -16,13 +16,16 @@ type
     btCancel: TBitBtn;
     btHelp: TBitBtn;
     btOK: TBitBtn;
+    bvBottomLine: TBevel;
     cbAccountType: TComboBox;
     cbCurrency: TComboBox;
     cbFavorite: TCheckBox;
     cbInactive: TCheckBox;
     dtInitialDate: TDateEdit;
-    edAccountName: TLabeledEdit;
-    edInitialBalance: TFloatSpinEdit;
+    edAccountName: TEdit;
+    edInitialBalance: TEdit;
+    lbAccountName: TLabel;
+    lbAccountStatus: TLabel;
     lbAccountType: TLabel;
     lbCurrency: TLabel;
     lbInitialBalance: TLabel;

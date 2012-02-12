@@ -46,7 +46,7 @@ var
 
 implementation
 
-uses FinanceDialogs;
+uses FinanceDialogs, AccountDlg;
 
 {$R *.lfm}
 
@@ -56,6 +56,16 @@ procedure TfrmMain.tvNavigatorClick(Sender: TObject);
 begin
   if not Assigned(tvNavigator.Selected) then exit;
   ShowMessage(tvNavigator.Selected.Text);
+
+  with TAccountEditorDialog.Create(nil) do
+    try
+      ShowModal;
+    finally
+      Free;
+    end;
+
+
+
 end;
 
 procedure TfrmMain.acHelpAboutExecute(Sender: TObject);
