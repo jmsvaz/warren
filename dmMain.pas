@@ -5,10 +5,15 @@ unit dmMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil;
+  Classes, SysUtils, FileUtil, Dialogs, Controls;
 
 type
-  TDataModule1 = class(TDataModule)
+
+  { Tdm }
+
+  Tdm = class(TDataModule)
+    ImageList: TImageList;
+    OpenDialog: TOpenDialog;
   private
     { private declarations }
   public
@@ -20,7 +25,7 @@ function LoadFile(AFileName: string): boolean;
 
 
 var
-  DataModule1: TDataModule1;
+  dm: Tdm;
 
 implementation
 

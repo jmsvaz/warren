@@ -151,7 +151,7 @@
       <Unit11>
         <Filename Value="dmMain.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="DataModule1"/>
+        <ComponentName Value="dm"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmMain"/>
       </Unit11>
