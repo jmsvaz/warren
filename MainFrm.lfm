@@ -16,6 +16,7 @@ object MainForm: TMainForm
     Width = 197
     Align = alLeft
     HotTrack = True
+    Images = dm.ImageList
     ReadOnly = True
     RowSelect = True
     ScrollBars = ssAutoBoth
