@@ -16,6 +16,7 @@ object WelcomeDialog: TWelcomeDialog
     Top = 39
     Width = 185
     Caption = 'Create New...'
+    OnClick = btCreateNewClick
     TabOrder = 0
   end
   object btOpen: TButton
@@ -97,9 +98,5 @@ object WelcomeDialog: TWelcomeDialog
     ParentColor = False
     ParentFont = False
     OptimalFill = True
-  end
-  object OpenDialog: TOpenDialog
-    left = 480
-    top = 224
   end
 end

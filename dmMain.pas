@@ -24,7 +24,7 @@ unit dmMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Dialogs, Controls;
+  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Dialogs, Controls;
 
 type
 
@@ -33,6 +33,7 @@ type
   Tdm = class(TDataModule)
     ImageList: TImageList;
     OpenDialog: TOpenDialog;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { private declarations }
   public
@@ -41,12 +42,20 @@ type
 
 procedure LoadOptions;
 function LoadFile(AFileName: string): boolean;
+function GetAnExistingFile: string;
+function GetACreatedFile: string;
+
+function CreateADatabase(AFileName: string): Boolean;
+
+procedure ShowAboutBox;
 
 
 var
   dm: Tdm;
 
 implementation
+
+uses ProgramStrings, WelcomeDlg, AboutDlg, DatabaseDlg;
 
 procedure LoadOptions;
 begin
@@ -56,6 +65,79 @@ end;
 function LoadFile(AFileName: string): boolean;
 begin
   Result:= True; //TODO: implement this!!!
+end;
+
+function GetACreatedFile: string;
+begin
+  with TCreateFileDialog.Create do
+    try
+      if Execute then
+        Result:= FileName;
+    finally
+      Free;
+    end;
+end;
+
+function GetAnExistingFile: string;
+begin
+  with TWelcomeDialog.Create(nil) do
+    try
+      if ShowModal = mrOK then
+        Result:= FileName;
+    finally
+      Release;
+    end;
+end;
+
+function CreateADatabase(AFileName: string): Boolean;
+var
+  AConnection: TSQLite3Connection;
+  ATransaction: TSQLTransaction;
+begin
+  Result:= False;
+  AConnection:= TSQLite3Connection.Create(nil);
+  try
+    AConnection.DatabaseName:= AFileName;
+    ATransaction:= TSQLTransaction.Create(nil);
+    try
+      ATransaction.DataBase:= AConnection;
+      AConnection.Transaction:= ATransaction;
+      AConnection.Open;
+      ATransaction.StartTransaction;
+      AConnection.ExecuteDirect('create table t1 (t1key INTEGER PRIMARY KEY, data TEXT, num DOUBLE);');    // create table 1
+//      AConnection.ExecuteDirect();    // create table 2 ...
+      ATransaction.Commit;
+      ATransaction.StartTransaction;
+//      AConnection.ExecuteDirect();    // insert data
+//      AConnection.ExecuteDirect();    // insert data ...
+      ATransaction.Commit;
+      AConnection.Close;
+      Result:= True;
+    finally
+      ATransaction.Free;
+    end;
+  finally
+    AConnection.Free;
+  end;
+end;
+
+procedure ShowAboutBox;
+begin
+  with TAboutDialog.Create(nil) do
+    try
+      ShowModal
+    finally
+      Release;
+    end;
+end;
+
+{ Tdm }
+
+procedure Tdm.DataModuleCreate(Sender: TObject);
+begin
+  OpenDialog.DefaultExt:= sDefaultExt;
+  OpenDialog.Filter:= GetSaveDialogFilter;
+  OpenDialog.Title:= sOpenDialogCaption;
 end;
 
 {$R *.lfm}

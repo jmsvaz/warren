@@ -1,0 +1,59 @@
+object DatabaseDialog: TDatabaseDialog
+  Left = 513
+  Height = 240
+  Top = 281
+  Width = 320
+  Caption = 'DatabaseDialog'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCreate = FormCreate
+  Position = poMainFormCenter
+  LCLVersion = '0.9.31'
+  object edFileName: TFileNameEdit
+    Left = 24
+    Height = 28
+    Top = 40
+    Width = 210
+    DialogKind = dkSave
+    DialogOptions = []
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 23
+    NumGlyphs = 0
+    MaxLength = 0
+    TabOrder = 0
+  end
+  object bvBottomLine: TBevel
+    Left = 16
+    Height = 12
+    Top = 168
+    Width = 282
+    Shape = bsBottomLine
+  end
+  object btHelp: TBitBtn
+    Left = 216
+    Height = 30
+    Top = 192
+    Width = 75
+    Caption = 'btHelp'
+    TabOrder = 1
+  end
+  object btCancel: TBitBtn
+    Left = 120
+    Height = 30
+    Top = 192
+    Width = 75
+    Caption = 'btCancel'
+    OnClick = btCancelClick
+    TabOrder = 2
+  end
+  object btOK: TBitBtn
+    Left = 32
+    Height = 30
+    Top = 192
+    Width = 75
+    Caption = 'btOK'
+    OnClick = btOKClick
+    TabOrder = 3
+  end
+end

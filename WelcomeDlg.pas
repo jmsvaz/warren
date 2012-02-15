@@ -40,7 +40,7 @@ type
     lbWebsite: TLabel;
     lbTitle: TLabel;
     lbCopyright: TLabel;
-    OpenDialog: TOpenDialog;
+    procedure btCreateNewClick(Sender: TObject);
     procedure btExitClick(Sender: TObject);
     procedure btOpenClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -54,25 +54,11 @@ type
 
 implementation
 
-uses ProgramStrings;
+uses ProgramStrings, dmMain, DatabaseDlg;
 
 {$R *.lfm}
 
 { TWelcomeDialog }
-
-procedure TWelcomeDialog.btExitClick(Sender: TObject);
-begin
-  Close;
-end;
-
-procedure TWelcomeDialog.btOpenClick(Sender: TObject);
-begin
-  if OpenDialog.Execute then
-    begin
-      FileName:= OpenDialog.FileName;
-      ModalResult:= mrOK;
-    end;
-end;
 
 procedure TWelcomeDialog.FormCreate(Sender: TObject);
 begin
@@ -80,6 +66,37 @@ begin
   lbTitle.Caption:= GetApplicationFullTitle;
   lbCopyright.Caption:= sCopyright;
   lbWebsite.Caption:= sHomepage;
+end;
+
+
+procedure TWelcomeDialog.btCreateNewClick(Sender: TObject);
+var
+  dlg: TCreateFileDialog;
+begin
+  dlg:= TCreateFileDialog.Create;
+  try
+    if dlg.Execute then
+      begin
+        FileName:= dlg.FileName;
+        ModalResult:= mrOK;
+      end;
+  finally
+    dlg.Free;
+  end;
+end;
+
+procedure TWelcomeDialog.btOpenClick(Sender: TObject);
+begin
+  if dm.OpenDialog.Execute then
+    begin
+      FileName:= dm.OpenDialog.FileName;
+      ModalResult:= mrOK;
+    end;
+end;
+
+procedure TWelcomeDialog.btExitClick(Sender: TObject);
+begin
+  Close;
 end;
 
 end.

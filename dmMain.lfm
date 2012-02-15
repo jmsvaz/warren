@@ -1,12 +1,11 @@
 object dm: Tdm
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 459
-  HorizontalOffset = 603
-  VerticalOffset = 433
+  HorizontalOffset = 549
+  VerticalOffset = 384
   Width = 675
   object OpenDialog: TOpenDialog
-    DefaultExt = '.wdb'
-    Filter = 'warren database|*.wdb'
     left = 111
     top = 116
   end

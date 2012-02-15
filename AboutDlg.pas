@@ -29,9 +29,9 @@ uses
 
 type
 
-  { TAboutBox }
+  { TAboutDialog }
 
-  TAboutBox = class(TForm)
+  TAboutDialog = class(TForm)
     btOK: TButton;
     btLicense: TButton;
     imIcon: TImage;
@@ -57,9 +57,9 @@ uses LCLIntf, ProgramStrings;
 
 {$R *.lfm}
 
-{ TAboutBox }
+{ TAboutDialog }
 
-procedure TAboutBox.FormShow(Sender: TObject);
+procedure TAboutDialog.FormShow(Sender: TObject);
 begin
   btLicense.Enabled:= FileExists(LicenseFile);
   Caption:= Format(sAboutDialogCaption,[Application.Title]);
@@ -71,21 +71,19 @@ begin
   mmInfo.Lines.Add(sLicenseIntro);
   mmInfo.Lines.Add('');
   mmInfo.Lines.Add(sAsIs);
-
-  ShowMessage(IntToStr(mmInfo.Lines.Count));
 end;
 
-procedure TAboutBox.btLicenseClick(Sender: TObject);
+procedure TAboutDialog.btLicenseClick(Sender: TObject);
 begin
   OpenDocument(GetLicenseFile);
 end;
 
-procedure TAboutBox.lbHomepageClick(Sender: TObject);
+procedure TAboutDialog.lbHomepageClick(Sender: TObject);
 begin
   OpenURL(lbHomepage.Caption);
 end;
 
-procedure TAboutBox.lbTitleDblClick(Sender: TObject);
+procedure TAboutDialog.lbTitleDblClick(Sender: TObject);
 begin
   ShowMessage(GetApplicationInfo);
 end;

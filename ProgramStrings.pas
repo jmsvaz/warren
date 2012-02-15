@@ -11,13 +11,23 @@ const
   sCopyright = 'Copyright © 2012 João Marcelo S. Vaz';
   sHomepage  = 'http://github.com/jmsvaz/warren';
 
+  sDefaultExt = '.wdb';
+
+
 function GetLicenseFile: string;
 function GetApplicationFullTitle: string;
 function GetApplicationInfo: string;
 
+function GetSaveDialogFilter: string;
+
 resourcestring
   sAboutDialogCaption = 'About %s';
   sWelcomeDialogCaption = 'Welcome to %s';
+  sOpenDialogCaption = 'Open existing file';
+  sDatabaseDialogCaption = 'Create a new file';
+
+  sDefaultFileDescription = 'Warren Database';
+  sAllFilesDescription = 'All files';
 
   sProgramInfo  = '%s build for %s at %s with %s';
   sLicenseIntro = 'This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.';
@@ -27,6 +37,18 @@ resourcestring
 implementation
 
 uses VersionInfo;
+
+function MaskFromExt(Ext: string): string;
+begin
+  Result:= '*' + Ext;
+end;
+
+function FormatFileDescription(Mask,Description: string; LastFilter: Boolean = False): string;
+begin
+  Result:= Description + '(' + Mask + ')|*' + Mask;
+  if not LastFilter then
+    Result:= Result + '|';
+end;
 
 function GetLicenseFile: string;
 begin
@@ -66,6 +88,12 @@ begin
     PI.Free;
   end;
   Result:= Format(sProgramInfo,[Format('%s %s', [Application.Title, ApplicationVersion]),Target,BuildDate,CompiledWith])
+end;
+
+function GetSaveDialogFilter: string;
+begin
+  Result:= FormatFileDescription(MaskFromExt(sDefaultExt),sDefaultFileDescription);
+  Result:= Result + FormatFileDescription(GetAllFilesMask,sAllFilesDescription,True);
 end;
 
 end.

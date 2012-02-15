@@ -1,4 +1,4 @@
-object AboutBox: TAboutBox
+object AboutDialog: TAboutDialog
   Left = 369
   Height = 452
   Top = 176
