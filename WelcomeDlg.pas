@@ -37,9 +37,10 @@ type
     btOpen: TButton;
     btViewHelp: TButton;
     imLogo: TImage;
+    lbSlogan: TLabel;
     lbWebsite: TLabel;
     lbTitle: TLabel;
-    lbCopyright: TLabel;
+    lbLicense: TLabel;
     procedure btCreateNewClick(Sender: TObject);
     procedure btExitClick(Sender: TObject);
     procedure btOpenClick(Sender: TObject);
@@ -64,8 +65,9 @@ procedure TWelcomeDialog.FormCreate(Sender: TObject);
 begin
   Caption:= Format(sWelcomeDialogCaption,[Application.Title]);
   lbTitle.Caption:= GetApplicationFullTitle;
-  lbCopyright.Caption:= sCopyright;
-  lbWebsite.Caption:= sHomepage;
+  lbSlogan.Caption:= dm.PI.ProductName;
+  lbLicense.Caption:= dm.PI.LegalTrademarks;
+  lbWebsite.Caption:= dm.PI.Comments;
 end;
 
 

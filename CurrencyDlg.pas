@@ -24,10 +24,31 @@ unit CurrencyDlg;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Grids, ExtCtrls, Buttons, Spin;
 
 type
+
+  { TCurrencyEditorDialog }
+
   TCurrencyEditorDialog = class(TForm)
+    btAdd: TBitBtn;
+    btOK: TBitBtn;
+    btHelp: TBitBtn;
+    btRemove: TBitBtn;
+    edDecimalChars: TSpinEdit;
+    edName: TLabeledEdit;
+    edISOCode: TLabeledEdit;
+    edNegotiatedFraction: TSpinEdit;
+    edUnitName: TLabeledEdit;
+    edCentsName: TLabeledEdit;
+    edPrefixSymbol: TLabeledEdit;
+    edSufixSymbol: TLabeledEdit;
+    lbCurrencies: TLabel;
+    lbDecimalChars: TLabel;
+    lbNegotiatedFraction: TLabel;
+    lbOneOver: TLabel;
+    sgCurrencies: TStringGrid;
   private
     { private declarations }
   public

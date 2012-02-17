@@ -40,6 +40,7 @@ type
 
   TProductInfo = class
   private
+    fBuildInfoAvailable: boolean;
     fVersionResource: TVersionResource;
     fFPCVersion: TVersionInfo;
     fLCLVersion: TVersionInfo;
@@ -60,6 +61,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
+    property BuildInfoAvailable: boolean Read fBuildInfoAvailable;
     property FileVersion: TVersionInfo read GetFileVersion; // Version number of the file — for example, "3.10"
     property ProductVersion: TVersionInfo read GetProductVersion; // Version of the product with which the file is distributed — for example, "3.10"
     property ProductName: String read GetProductName; // Name of the product with which the file is distributed.
@@ -84,7 +86,7 @@ type
 implementation
 
 uses
-   resource, versiontypes, lclversion, interfacebase;
+   resource, versiontypes, LCLVersion, InterfaceBase;
 
 function VersionInfoToStr(VI: TVersionInfo): String;
 begin
@@ -101,7 +103,7 @@ end;
 
 function TProductInfo.GetComments: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['Comments'];
 end;
 
 function TProductInfo.GetBuildDate: TDateTime;
@@ -120,7 +122,7 @@ end;
 
 function TProductInfo.GetCompanyName: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['CompanyName'];
 end;
 
 function TProductInfo.GetCPU: String;
@@ -130,7 +132,7 @@ end;
 
 function TProductInfo.GetFileDescription: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['FileDescription'];
 end;
 
 function TProductInfo.GetFileVersion: TVersionInfo;
@@ -143,22 +145,22 @@ end;
 
 function TProductInfo.GetInternalName: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['InternalName'];
 end;
 
 function TProductInfo.GetLegalCopyright: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['LegalCopyright'];
 end;
 
 function TProductInfo.GetLegalTrademarks: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['LegalTrademarks'];
 end;
 
 function TProductInfo.GetOriginalFilename: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['OriginalFilename'];
 end;
 
 function TProductInfo.GetOS: String;
@@ -168,7 +170,7 @@ end;
 
 function TProductInfo.GetProductName: String;
 begin
-  Result:= '';
+  Result:= fVersionResource.StringFileInfo[0].Values['ProductName'];
 end;
 
 function TProductInfo.GetProductVersion: TVersionInfo;
@@ -188,7 +190,10 @@ end;
 constructor TProductInfo.Create;
 var
   Stream: TResourceStream;
+  Res: TFPResourceHandle;
+  ResID: Integer;
 begin
+  fBuildInfoAvailable:= False;
   {$IFOPT m+}
     {$DEFINE MacroOn}
   {$ELSE}
@@ -207,14 +212,21 @@ begin
   fLCLVersion.MinorVersion:= lcl_minor;
   fLCLVersion.Release:= lcl_release;
   fLCLVersion.Build:= lcl_patch;
+
+  ResID:= 1;
+    // Defensive code to prevent failure if no resource available...
+  Res := FindResource(HINSTANCE, PChar(PtrInt(ResID)), PChar(RT_VERSION));
+  if Res = 0 then exit;
+
   fVersionResource:= TVersionResource.Create;
-  Stream := TResourceStream.CreateFromID(HINSTANCE, 1, PChar(RT_VERSION));
+  Stream := TResourceStream.CreateFromID(HINSTANCE, ResID, PChar(RT_VERSION));
   try
     fVersionResource.SetCustomRawDataStream(Stream);
     // access some property to load from the stream
     fVersionResource.FixedInfo;
     // clear the stream
     fVersionResource.SetCustomRawDataStream(nil);
+    fBuildInfoAvailable:= True;
   finally
     Stream.Free;
   end;

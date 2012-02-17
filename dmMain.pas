@@ -24,7 +24,8 @@ unit dmMain;
 interface
 
 uses
-  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Dialogs, Controls;
+  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Dialogs, Controls,
+  VersionInfo;
 
 type
 
@@ -34,10 +35,12 @@ type
     ImageList: TImageList;
     OpenDialog: TOpenDialog;
     procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
+    PI: TProductInfo;
   end;
 
 procedure LoadOptions;
@@ -138,7 +141,15 @@ begin
   OpenDialog.DefaultExt:= sDefaultExt;
   OpenDialog.Filter:= GetSaveDialogFilter;
   OpenDialog.Title:= sOpenDialogCaption;
+  PI:= TProductInfo.Create;
 end;
+
+procedure Tdm.DataModuleDestroy(Sender: TObject);
+begin
+  PI.Free;
+end;
+
+
 
 {$R *.lfm}
 

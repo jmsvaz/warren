@@ -21,7 +21,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
       <Language Value="0809"/>
-      <StringTable ProductVersion=""/>
+      <StringTable Comments="http://github.com/jmsvaz/warren" FileDescription="Personal Finance Software" LegalCopyright="Copyright © 2012 João Marcelo S. Vaz" LegalTrademarks="Free software released under GPLv3" ProductName="Personal Finance Software" ProductVersion=""/>
     </VersionInfo>
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="gtk2"/>

@@ -1,9 +1,10 @@
 object dm: Tdm
   OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 459
-  HorizontalOffset = 549
-  VerticalOffset = 384
+  HorizontalOffset = 438
+  VerticalOffset = 219
   Width = 675
   object OpenDialog: TOpenDialog
     left = 111

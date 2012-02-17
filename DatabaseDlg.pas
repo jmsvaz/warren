@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, EditBtn,
-  ExtCtrls, Buttons;
+  ExtCtrls, Buttons, StdCtrls;
 
 type
 
@@ -36,7 +36,12 @@ type
     btHelp: TBitBtn;
     btOK: TBitBtn;
     bvBottomLine: TBevel;
+    cbCurrency: TComboBox;
     edFileName: TFileNameEdit;
+    edName: TEdit;
+    lbCurrency: TLabel;
+    lbFile: TLabel;
+    lbName: TLabel;
     procedure btCancelClick(Sender: TObject);
     procedure btOKClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

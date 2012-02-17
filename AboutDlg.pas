@@ -53,7 +53,7 @@ type
 
 implementation
 
-uses LCLIntf, ProgramStrings;
+uses LCLIntf, ProgramStrings, dmMain;
 
 {$R *.lfm}
 
@@ -65,8 +65,8 @@ begin
   Caption:= Format(sAboutDialogCaption,[Application.Title]);
   lbTitle.Caption:= GetApplicationFullTitle;
 //  imIcon.Picture.Assign(Application.Icon);
-  lbCopyright.Caption:=  sCopyright;
-  lbHomepage.Caption:= sHomepage;
+  lbCopyright.Caption:=  dm.PI.LegalCopyright;
+  lbHomepage.Caption:= dm.PI.Comments;
   mmInfo.Lines.Clear;
   mmInfo.Lines.Add(sLicenseIntro);
   mmInfo.Lines.Add('');
