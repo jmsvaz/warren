@@ -55,7 +55,7 @@ type
 
 implementation
 
-uses ProgramStrings, dmMain, DatabaseDlg;
+uses ProgramStrings, MainDM, DatabaseDlg;
 
 {$R *.lfm}
 

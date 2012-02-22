@@ -36,16 +36,15 @@ type
     btOK: TBitBtn;
     btHelp: TBitBtn;
     btRemove: TBitBtn;
-    edDecimalChars: TSpinEdit;
+    edCountry: TLabeledEdit;
     edName: TLabeledEdit;
-    edISOCode: TLabeledEdit;
+    edAlphabeticCode: TLabeledEdit;
     edNegotiatedFraction: TSpinEdit;
     edUnitName: TLabeledEdit;
     edCentsName: TLabeledEdit;
     edPrefixSymbol: TLabeledEdit;
     edSufixSymbol: TLabeledEdit;
     lbCurrencies: TLabel;
-    lbDecimalChars: TLabel;
     lbNegotiatedFraction: TLabel;
     lbOneOver: TLabel;
     sgCurrencies: TStringGrid;

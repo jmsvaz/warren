@@ -26,7 +26,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  SysUtils, Forms, MainFrm, dmMain;
+  SysUtils, Forms, MainFrm, MainDM;
 
 {$R *.res}
 
@@ -40,7 +40,7 @@ begin
   if ParamCount > 0 then
     MainForm.FileName:= ParamStr(1)
   else
-    MainForm.FileName:= dmMain.GetAnExistingFile;  // show Welcome Dialog
+    MainForm.FileName:= MainDM.GetAnExistingFile;  // show Welcome Dialog
 
   if FileExists(MainForm.FileName) then
     Application.Run

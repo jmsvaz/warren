@@ -67,7 +67,7 @@ var
 
 implementation
 
-uses ProgramStrings, dmMain;
+uses ProgramStrings, MainDM;
 
 { TCreateFileDialog }
 
@@ -101,6 +101,7 @@ begin
   edFileName.DefaultExt:= sDefaultExt;
   edFileName.Filter:= GetSaveDialogFilter;
   edFileName.DialogTitle:= sDatabaseDialogCaption;
+  cbCurrency.Items.Assign(dm.CurrencyManager.CurrencyList);
 end;
 
 procedure TDatabaseDialog.btCancelClick(Sender: TObject);

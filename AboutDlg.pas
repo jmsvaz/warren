@@ -53,7 +53,7 @@ type
 
 implementation
 
-uses LCLIntf, ProgramStrings, dmMain;
+uses LCLIntf, ProgramStrings, MainDM;
 
 {$R *.lfm}
 

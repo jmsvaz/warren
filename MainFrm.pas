@@ -67,7 +67,7 @@ var
 
 implementation
 
-uses dmMain;
+uses MainDM;
 
 {$R *.lfm}
 
@@ -90,7 +90,7 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
-  if dmMain.LoadFile(FileName) then
+  if MainDM.LoadFile(FileName) then
     Caption:= Application.Title + ' - ' + FileName
   else
     begin

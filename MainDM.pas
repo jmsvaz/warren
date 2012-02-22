@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
-unit dmMain;
+unit MainDM;
 
 {$mode objfpc}{$H+}
 
@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Dialogs, Controls,
-  VersionInfo;
+  VersionInfo, CurrencyMgr;
 
 type
 
@@ -41,6 +41,7 @@ type
   public
     { public declarations }
     PI: TProductInfo;
+    CurrencyManager: TCurrencyManager;
   end;
 
 procedure LoadOptions;
@@ -142,10 +143,12 @@ begin
   OpenDialog.Filter:= GetSaveDialogFilter;
   OpenDialog.Title:= sOpenDialogCaption;
   PI:= TProductInfo.Create;
+  CurrencyManager:= TCurrencyManager.Create;
 end;
 
 procedure Tdm.DataModuleDestroy(Sender: TObject);
 begin
+  CurrencyManager.Free;
   PI.Free;
 end;
 

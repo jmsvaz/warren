@@ -67,8 +67,8 @@ object DatabaseDialog: TDatabaseDialog
     Top = 80
     Width = 247
     ItemHeight = 0
+    Style = csDropDownList
     TabOrder = 4
-    Text = 'cbCurrency'
   end
   object lbCurrency: TLabel
     Left = 16

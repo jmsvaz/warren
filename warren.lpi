@@ -79,7 +79,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="14">
+    <Units Count="15">
       <Unit0>
         <Filename Value="warren.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -142,11 +142,11 @@
         <UnitName Value="WelcomeDlg"/>
       </Unit8>
       <Unit9>
-        <Filename Value="dmMain.pas"/>
+        <Filename Value="MainDM.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dm"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmMain"/>
+        <UnitName Value="MainDM"/>
       </Unit9>
       <Unit10>
         <Filename Value="AboutDlg.pas"/>
@@ -173,6 +173,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DatabaseDlg"/>
       </Unit13>
+      <Unit14>
+        <Filename Value="CurrencyMgr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CurrencyMgr"/>
+      </Unit14>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

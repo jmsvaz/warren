@@ -51,7 +51,7 @@ resourcestring
 
 implementation
 
-uses dmMain, VersionInfo;
+uses MainDM, VersionInfo;
 
 function GetApplicationFullTitle: string;
 begin

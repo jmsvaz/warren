@@ -3,6 +3,7 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
   Height = 695
   Top = 185
   Width = 903
+  ActiveControl = sgCurrencies
   Caption = 'CurrencyEditorDialog'
   ClientHeight = 695
   ClientWidth = 903
@@ -46,21 +47,21 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
     LabelSpacing = 10
     TabOrder = 1
   end
-  object edISOCode: TLabeledEdit
-    Left = 149
+  object edAlphabeticCode: TLabeledEdit
+    Left = 594
     Height = 28
-    Top = 456
+    Top = 408
     Width = 256
-    EditLabel.AnchorSideTop.Control = edISOCode
+    EditLabel.AnchorSideTop.Control = edAlphabeticCode
     EditLabel.AnchorSideTop.Side = asrCenter
-    EditLabel.AnchorSideRight.Control = edISOCode
-    EditLabel.AnchorSideBottom.Control = edISOCode
+    EditLabel.AnchorSideRight.Control = edAlphabeticCode
+    EditLabel.AnchorSideBottom.Control = edAlphabeticCode
     EditLabel.AnchorSideBottom.Side = asrBottom
-    EditLabel.Left = 66
+    EditLabel.Left = 459
     EditLabel.Height = 19
-    EditLabel.Top = 461
-    EditLabel.Width = 73
-    EditLabel.Caption = 'ISO Code:'
+    EditLabel.Top = 413
+    EditLabel.Width = 125
+    EditLabel.Caption = 'Alphabetic Code:'
     EditLabel.ParentColor = False
     LabelPosition = lpLeft
     LabelSpacing = 10
@@ -109,7 +110,7 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
   object edPrefixSymbol: TLabeledEdit
     Left = 594
     Height = 28
-    Top = 408
+    Top = 456
     Width = 256
     EditLabel.AnchorSideTop.Control = edPrefixSymbol
     EditLabel.AnchorSideTop.Side = asrCenter
@@ -118,7 +119,7 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
     EditLabel.AnchorSideBottom.Side = asrBottom
     EditLabel.Left = 477
     EditLabel.Height = 19
-    EditLabel.Top = 413
+    EditLabel.Top = 461
     EditLabel.Width = 107
     EditLabel.Caption = 'Prefix Symbol:'
     EditLabel.ParentColor = False
@@ -129,7 +130,7 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
   object edSufixSymbol: TLabeledEdit
     Left = 594
     Height = 28
-    Top = 456
+    Top = 504
     Width = 256
     EditLabel.AnchorSideTop.Control = edSufixSymbol
     EditLabel.AnchorSideTop.Side = asrCenter
@@ -138,7 +139,7 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
     EditLabel.AnchorSideBottom.Side = asrBottom
     EditLabel.Left = 483
     EditLabel.Height = 19
-    EditLabel.Top = 461
+    EditLabel.Top = 509
     EditLabel.Width = 101
     EditLabel.Caption = 'Sufix Symbol:'
     EditLabel.ParentColor = False
@@ -178,30 +179,13 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
     Caption = 'btOK'
     TabOrder = 10
   end
-  object edDecimalChars: TSpinEdit
-    Left = 594
-    Height = 28
-    Top = 504
-    Width = 256
-    TabOrder = 11
-    Value = 2
-  end
   object edNegotiatedFraction: TSpinEdit
     Left = 613
     Height = 28
     Top = 547
     Width = 237
-    TabOrder = 12
+    TabOrder = 11
     Value = 100
-  end
-  object lbDecimalChars: TLabel
-    Left = 474
-    Height = 19
-    Top = 509
-    Width = 112
-    Caption = 'Decimal Chars:'
-    FocusControl = edDecimalChars
-    ParentColor = False
   end
   object lbNegotiatedFraction: TLabel
     Left = 434
@@ -222,5 +206,25 @@ object CurrencyEditorDialog: TCurrencyEditorDialog
     Font.Height = 16
     ParentColor = False
     ParentFont = False
+  end
+  object edCountry: TLabeledEdit
+    Left = 149
+    Height = 28
+    Top = 452
+    Width = 256
+    EditLabel.AnchorSideTop.Control = edCountry
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = edCountry
+    EditLabel.AnchorSideBottom.Control = edCountry
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 76
+    EditLabel.Height = 19
+    EditLabel.Top = 457
+    EditLabel.Width = 63
+    EditLabel.Caption = 'Country:'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    LabelSpacing = 10
+    TabOrder = 12
   end
 end
