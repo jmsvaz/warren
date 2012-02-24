@@ -45,8 +45,10 @@ type
     procedure btCancelClick(Sender: TObject);
     procedure btOKClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { private declarations }
+    function CheckValues(out msg: String): Boolean;
   public
     { public declarations }
   end;
@@ -104,15 +106,52 @@ begin
   cbCurrency.Items.Assign(dm.CurrencyManager.CurrencyList);
 end;
 
+procedure TDatabaseDialog.FormShow(Sender: TObject);
+begin
+
+  if cbCurrency.Items.Count > 0 then
+    cbCurrency.ItemIndex:= 0;
+end;
+
+function TDatabaseDialog.CheckValues(out msg: String): Boolean;
+var
+  path,filename: string;
+begin
+  // TODO: choose a better error message and transform to resourcestring
+  Result:= False;
+  if Length(cbCurrency.Text) = 0 then
+    begin
+      msg:= 'Choose a base currency!';
+      cbCurrency.SetFocus;
+      Exit;
+    end;
+  path:= ExtractFilePath(edFileName.Text);
+  filename:= ExtractFileName(edFileName.Text);
+  if (Length(path) = 0) or (Length(filename) = 0) then
+    begin
+      msg:= 'Choose a filename!';
+      edFileName.SetFocus;
+      Exit;
+    end;
+  Result:= True;
+end;
+
 procedure TDatabaseDialog.btCancelClick(Sender: TObject);
 begin
   Close;
 end;
 
 procedure TDatabaseDialog.btOKClick(Sender: TObject);
+var
+  error: String;
 begin
-  if CreateADatabase(edFileName.Text) then
-    ModalResult:= mrOK;
+  if CheckValues(error) then
+    begin
+      if CreateADatabase(edFileName.Text) then
+        ModalResult:= mrOK;
+    end
+  else
+    ShowMessage(error);
 end;
 
 end.
