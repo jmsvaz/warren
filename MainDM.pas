@@ -24,7 +24,7 @@ unit MainDM;
 interface
 
 uses
-  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Dialogs, Controls,
+  Classes, SysUtils, Forms, sqlite3conn, sqldb, FileUtil, Dialogs, Controls,
   VersionInfo, CurrencyMgr;
 
 type
@@ -49,7 +49,7 @@ function LoadFile(AFileName: string): boolean;
 function GetAnExistingFile: string;
 function GetACreatedFile: string;
 
-function CreateADatabase(AFileName: string): Boolean;
+function CreateADatabase(ATitle,ACurrency,AFileName: string): Boolean;
 
 procedure ShowAboutBox;
 
@@ -93,10 +93,12 @@ begin
     end;
 end;
 
-function CreateADatabase(AFileName: string): Boolean;
+function CreateADatabase(ATitle, ACurrency, AFileName: string): Boolean;
 var
   AConnection: TSQLite3Connection;
   ATransaction: TSQLTransaction;
+const
+  DBVersion = 1;
 begin
   Result:= False;
   AConnection:= TSQLite3Connection.Create(nil);
@@ -108,11 +110,55 @@ begin
       AConnection.Transaction:= ATransaction;
       AConnection.Open;
       ATransaction.StartTransaction;
-      AConnection.ExecuteDirect('create table t1 (t1key INTEGER PRIMARY KEY, data TEXT, num DOUBLE);');    // create table 1
+      // create ProgramInfo table
+      AConnection.ExecuteDirect(
+                  'CREATE TABLE IF NOT EXISTS PROGRAMINFO (' +
+                  'PROGRAMINFOID INTEGER PRIMARY KEY,' +
+                  'PROPERTY TEXT,' +
+                  'VALUE TEXT);');
 //      AConnection.ExecuteDirect();    // create table 2 ...
       ATransaction.Commit;
       ATransaction.StartTransaction;
-//      AConnection.ExecuteDirect();    // insert data
+      // insert CreatedDate property on table PROGRAMINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO PROGRAMINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('CreatedDate') + ',' + QuotedStr(FormatDateTime('yyyy/mm/dd hh:nn:ss',Now)) + ');');
+      // insert ProgramName property on table PROGRAMINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO PROGRAMINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('ProgramName') + ',' + QuotedStr(Application.Title) + ');');
+      // insert ProgramVersion property on table PROGRAMINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO PROGRAMINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('ProgramVersion') + ',' + QuotedStr(VersionInfo3ToStr(dm.PI.FileVersion)) + ');');
+      // insert DBVersion property on table PROGRAMINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO PROGRAMINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('DBVersion') + ',' + QuotedStr(IntToStr(DBVersion)) + ');');
+      // insert DBTitle property on table PROGRAMINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO PROGRAMINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('DBTitle') + ',' + QuotedStr(ATitle) + ');');
+      // insert BaseCurrency property on table PROGRAMINFO
+       AConnection.ExecuteDirect(
+                   'INSERT INTO PROGRAMINFO ' +
+                   '(PROPERTY,VALUE) VALUES ' +
+                   '(' + QuotedStr('BaseCurrency') + ',' + QuotedStr(ACurrency) + ');');
+
+      // insert ModifiedDate property on table PROGRAMINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO PROGRAMINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('ModifiedDate') + ',' + QuotedStr(FormatDateTime('yyyy/mm/dd hh:nn:ss',Now)) + ');');
+
+
+
+
 //      AConnection.ExecuteDirect();    // insert data ...
       ATransaction.Commit;
       AConnection.Close;
@@ -124,6 +170,7 @@ begin
     AConnection.Free;
   end;
 end;
+
 
 procedure ShowAboutBox;
 begin

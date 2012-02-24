@@ -145,10 +145,13 @@ procedure TDatabaseDialog.btOKClick(Sender: TObject);
 var
   error: String;
 begin
+  // TODO: choose a better error message and transform to resourcestring
   if CheckValues(error) then
     begin
-      if CreateADatabase(edFileName.Text) then
-        ModalResult:= mrOK;
+      if CreateADatabase(edName.Text,cbCurrency.Text,edFileName.Text) then
+        ModalResult:= mrOK
+      else
+        error:= 'could not create database';
     end
   else
     ShowMessage(error);
