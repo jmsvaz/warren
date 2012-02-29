@@ -116,7 +116,23 @@ begin
                   'PROGRAMINFOID INTEGER PRIMARY KEY,' +
                   'PROPERTY TEXT,' +
                   'VALUE TEXT);');
-//      AConnection.ExecuteDirect();    // create table 2 ...
+      // create DBInfo table
+      AConnection.ExecuteDirect(
+                  'CREATE TABLE IF NOT EXISTS DBINFO (' +
+                  'DBINFOID INTEGER PRIMARY KEY,' +
+                  'PROPERTY TEXT,' +
+                  'VALUE TEXT);');
+      // create Currency table
+      AConnection.ExecuteDirect(
+                  'CREATE TABLE IF NOT EXISTS CURRENCY (' +
+                  'CURRENCYID INTEGER PRIMARY KEY,' +
+                  'NAME TEXT,' +
+                  'CODE TEXT,' +
+                  'PREFIXSYMBOL TEXT,' +
+                  'SUFFIXSYMBOL TEXT,' +
+                  'FRACTION DOUBLE);');
+
+//      AConnection.ExecuteDirect();    // create another table ...
       ATransaction.Commit;
       ATransaction.StartTransaction;
       // insert CreatedDate property on table PROGRAMINFO
@@ -139,22 +155,22 @@ begin
                   'INSERT INTO PROGRAMINFO ' +
                   '(PROPERTY,VALUE) VALUES ' +
                   '(' + QuotedStr('DBVersion') + ',' + QuotedStr(IntToStr(DBVersion)) + ');');
-      // insert DBTitle property on table PROGRAMINFO
-      AConnection.ExecuteDirect(
-                  'INSERT INTO PROGRAMINFO ' +
-                  '(PROPERTY,VALUE) VALUES ' +
-                  '(' + QuotedStr('DBTitle') + ',' + QuotedStr(ATitle) + ');');
-      // insert BaseCurrency property on table PROGRAMINFO
-       AConnection.ExecuteDirect(
-                   'INSERT INTO PROGRAMINFO ' +
-                   '(PROPERTY,VALUE) VALUES ' +
-                   '(' + QuotedStr('BaseCurrency') + ',' + QuotedStr(ACurrency) + ');');
-
       // insert ModifiedDate property on table PROGRAMINFO
       AConnection.ExecuteDirect(
                   'INSERT INTO PROGRAMINFO ' +
                   '(PROPERTY,VALUE) VALUES ' +
                   '(' + QuotedStr('ModifiedDate') + ',' + QuotedStr(FormatDateTime('yyyy/mm/dd hh:nn:ss',Now)) + ');');
+
+      // insert DBTitle property on table DBINFO
+      AConnection.ExecuteDirect(
+                  'INSERT INTO DBINFO ' +
+                  '(PROPERTY,VALUE) VALUES ' +
+                  '(' + QuotedStr('DBTitle') + ',' + QuotedStr(ATitle) + ');');
+      // insert BaseCurrency property on table DBINFO
+       AConnection.ExecuteDirect(
+                   'INSERT INTO DBINFO ' +
+                   '(PROPERTY,VALUE) VALUES ' +
+                   '(' + QuotedStr('BaseCurrency') + ',' + QuotedStr(ACurrency) + ');');
 
 
 

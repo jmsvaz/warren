@@ -118,6 +118,7 @@ var
   path,filename: string;
 begin
   // TODO: choose a better error message and transform to resourcestring
+
   Result:= False;
   if Length(cbCurrency.Text) = 0 then
     begin
