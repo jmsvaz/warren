@@ -69,7 +69,7 @@ var
 
 implementation
 
-uses ProgramStrings, MainDM;
+uses ProgramStrings, MainDM, CurrencyMgr;
 
 { TCreateFileDialog }
 
@@ -103,7 +103,7 @@ begin
   edFileName.DefaultExt:= sDefaultExt;
   edFileName.Filter:= GetSaveDialogFilter;
   edFileName.DialogTitle:= sDatabaseDialogCaption;
-  cbCurrency.Items.Assign(dm.CurrencyManager.CurrencyList);
+  cbCurrency.Items.Assign(CurrencyManager.CurrencyList);
 end;
 
 procedure TDatabaseDialog.FormShow(Sender: TObject);

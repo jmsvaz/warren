@@ -28,28 +28,174 @@ uses
 
 type
 
-  { TCurrencyManager }
+ TCurrency = record
+   Name: string;
+   Code: string;
+   PrefixSymbol: string;
+   SuffixSymbol: string;
+   NegotiatedFraction: Double;
+ end;
 
-  TCurrencyManager = class
-  private
-    fAmendmentList: TList;
-    fCurrencyList: TStringList;
-    fPopulateTableSQL: TStringList;
-    function GetCurrencyList: TStringList;
-    function GetPopulateTableSQL: TStringList;
-    procedure AddCurrency(Name, Country, AlphabeticCode, UnitsName, CentsName, PrefixName, SuffixName: string; NegotiatedFraction: Double);
-  protected
-    procedure PopulateData;
-  public
-    constructor Create;
-    destructor Destroy;
-    function GetUpdateTableSQL(FromAmendment: Integer): TStringList;
-    property CurrencyList: TStringList read GetCurrencyList;
-    property PopulateTableSQL: TStringList read GetPopulateTableSQL;
+ { TCustomCurrencyList }
 
-  end;
+ TCustomCurrencyList = class
+   private
+     fCurrencyList: TStringList;
+     fCurrencyProperties: TStringList;
+     function GetCount: Integer;
+   protected // to be overriden
+     function GetCurrencyCount: Integer; virtual; abstract; // returns the number of currencies will be added
+     function ToCurrency(ACurrency: TStringList): TCurrency; virtual; abstract; // convert a stored currency to a curency record
+     function ToStringList(ACurrencyIndex: Integer): TStringList; virtual; abstract;
+     function GetPropertyNames: TStringList; virtual; abstract;
+   public
+     constructor Create;
+     destructor Destroy; override;
+     property CurrencyPropertyNames: TStringList read GetPropertyNames;
+     function PropertiesByCurrencyName(AName: string): TStringList;
+     function PropertiesByCurrencyIndex(AIndex: Integer): TStringList;
+     function CurrencyByName(AName: string): TCurrency;
+     function CurrencyByIndex(AIndex: Integer): TCurrency;
+     property Count: Integer read GetCount;
+
+ end;
+
+  { TISO4217CurrencyList }
+
+  TISO4217CurrencyList = class(TCustomCurrencyList)
+    protected
+      function GetCurrencyCount: Integer; override;
+      function ToCurrency(ACurrency: TStringList): TCurrency; override;
+      function ToStringList(ACurrencyIndex: Integer): TStringList; override;
+      function GetPropertyNames: TStringList; override;
+    end;
+
+
+   type
+    { TCurrencyManager }
+
+    TCurrencyManager = class
+    private
+      fAmendmentList: TList;
+      fCurrencyList: TStringList;
+      fPopulateTableSQL: TStringList;
+      function GetCurrencyList: TStringList;
+      function GetPopulateTableSQL: TStringList;
+      procedure AddCurrency(Name, Country, AlphabeticCode, UnitsName, CentsName, PrefixName, SuffixName: string; NegotiatedFraction: Double);
+    protected
+      procedure PopulateData;
+    public
+      constructor Create;
+      destructor Destroy;
+      function GetUpdateTableSQL(FromAmendment: Integer): TStringList;
+      property CurrencyList: TStringList read GetCurrencyList;
+      property PopulateTableSQL: TStringList read GetPopulateTableSQL;
+
+    end;
+
+
+
+var
+  CurrencyManager: TCurrencyManager; //TODO: change this to specific currency types manager (ISO4217, Stocks, Mutua Funds, etc)
 
 implementation
+
+uses math;
+
+{ TISO4217CurrencyList }
+
+function TISO4217CurrencyList.GetCurrencyCount: Integer;
+begin
+  Result:= 1; //TODO: add other currencies....
+end;
+
+function TISO4217CurrencyList.ToCurrency(ACurrency: TStringList): TCurrency;
+begin
+  with Result do
+    begin
+      Name:= ACurrency[0];
+      Code:= ACurrency[2];
+      PrefixSymbol:= ACurrency[2];
+      SuffixSymbol:= '';
+      NegotiatedFraction:= Power(10,StrToInt(ACurrency[4]));
+    end;
+end;
+
+function TISO4217CurrencyList.ToStringList(ACurrencyIndex: Integer
+  ): TStringList;
+begin
+  //TODO: add other currencies....
+    Result:= TStringList.Create;
+    Result.Add('Real');
+    Result.Add('Brasil');
+    Result.Add('BRL');
+    Result.Add('986');
+    Result.Add('2');
+end;
+
+function TISO4217CurrencyList.GetPropertyNames: TStringList;
+begin
+  Result:= TStringList.Create;
+  Result.Add('Name');
+  Result.Add('Country');
+  Result.Add('Alphabetic Code');
+  Result.Add('Numeric Code');
+  Result.Add('Minor Unit');
+end;
+
+
+{ TCustomCurrencyList }
+
+function TCustomCurrencyList.GetCount: Integer;
+begin
+  Result:= fCurrencyList.Count;
+end;
+
+constructor TCustomCurrencyList.Create;
+var
+  i: Integer;
+begin
+  fCurrencyList:= TStringList.Create;
+  fCurrencyProperties:= TStringList.Create;
+  fCurrencyList.BeginUpdate;
+  for i:= 0 to (GetCurrencyCount - 1) do
+    fCurrencyList.AddObject(ToStringList(i)[0],ToStringList(i));
+  fCurrencyList.EndUpdate;
+end;
+
+destructor TCustomCurrencyList.Destroy;
+begin
+  fCurrencyProperties.Free;
+  fCurrencyList.Free;
+end;
+
+function TCustomCurrencyList.PropertiesByCurrencyName(AName: string
+  ): TStringList;
+begin
+  Result:= TStringList.Create;
+  Result.Assign(fCurrencyList.Objects[fCurrencyList.IndexOf(AName)] as TStringList);
+end;
+
+function TCustomCurrencyList.PropertiesByCurrencyIndex(AIndex: Integer
+  ): TStringList;
+begin
+  Result:= TStringList.Create;
+  Result.Assign(fCurrencyList.Objects[AIndex] as TStringList);
+end;
+
+function TCustomCurrencyList.CurrencyByName(AName: string): TCurrency;
+begin
+  Result:= ToCurrency(PropertiesByCurrencyName(AName));
+end;
+
+
+function TCustomCurrencyList.CurrencyByIndex(AIndex: Integer): TCurrency;
+begin
+  Result:= ToCurrency(PropertiesByCurrencyIndex(AIndex));
+end;
+
+
+
 
 { TCurrencyManager }
 
@@ -108,6 +254,13 @@ function TCurrencyManager.GetUpdateTableSQL(FromAmendment: Integer
 begin
 //TODO: create amendment list
 end;
+
+
+initialization
+  CurrencyManager:= TCurrencyManager.Create;
+
+finalization
+  CurrencyManager.Free;
 
 end.
 

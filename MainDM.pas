@@ -41,7 +41,6 @@ type
   public
     { public declarations }
     PI: TProductInfo;
-    CurrencyManager: TCurrencyManager;
   end;
 
 procedure LoadOptions;
@@ -206,12 +205,10 @@ begin
   OpenDialog.Filter:= GetSaveDialogFilter;
   OpenDialog.Title:= sOpenDialogCaption;
   PI:= TProductInfo.Create;
-  CurrencyManager:= TCurrencyManager.Create;
 end;
 
 procedure Tdm.DataModuleDestroy(Sender: TObject);
 begin
-  CurrencyManager.Free;
   PI.Free;
 end;
 
