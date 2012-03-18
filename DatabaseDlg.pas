@@ -103,7 +103,7 @@ begin
   edFileName.DefaultExt:= sDefaultExt;
   edFileName.Filter:= GetSaveDialogFilter;
   edFileName.DialogTitle:= sDatabaseDialogCaption;
-  cbCurrency.Items.Assign(CurrencyManager.CurrencyList);
+  cbCurrency.Items.Assign(CurrencyManager.ISO4217Currencies);
 end;
 
 procedure TDatabaseDialog.FormShow(Sender: TObject);
