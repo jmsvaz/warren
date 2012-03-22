@@ -107,10 +107,11 @@ uses math;
 const
 
   //TODO: add other currencies....
-  ISO4217CurrencyCount = 2;
+  ISO4217CurrencyCount = 3;
   ISO4217Currency: array[0..ISO4217CurrencyCount-1,0..4] of string =
-    (('Real','Brasil','BRL','986','2'),
-     ('US Dollar','United States','USD','840','2')
+    (('Brasil','Real','BRL','986','2'),
+     ('United States','US Dollar','USD','840','2'),
+     ('EuroZone','Euro','EUR','978','2')
     );
 
 function TISO4217CurrencyList.GetCurrencyListName: string;
@@ -127,7 +128,7 @@ function TISO4217CurrencyList.ToCurrency(ACurrency: TStringList): TCurrency;
 begin
   with Result do
     begin
-      Name:= ACurrency[0];
+      Name:= ACurrency[1];
       Code:= ACurrency[2];
       PrefixSymbol:= ACurrency[2];
       SuffixSymbol:= '';
@@ -151,8 +152,8 @@ end;
 function TISO4217CurrencyList.GetPropertyNames: TStringList;
 begin
   Result:= TStringList.Create;
+  Result.Add('Entity');
   Result.Add('Name');
-  Result.Add('Country');
   Result.Add('Alphabetic Code');
   Result.Add('Numeric Code');
   Result.Add('Minor Unit');
@@ -244,6 +245,7 @@ var
   ISO4217: TCustomCurrencyList;
 begin
   Result:= TStringList.Create;
+  Result.Sorted:= True;
   ISO4217:= fCurrencyList.Objects[0] as TISO4217CurrencyList;
   for i:= 0 to ISO4217.Count - 1 do
     Result.Add(ISO4217.CurrencyByIndex(i).Name);
