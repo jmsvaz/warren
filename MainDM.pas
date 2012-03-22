@@ -48,7 +48,7 @@ function LoadFile(AFileName: string): boolean;
 function GetAnExistingFile: string;
 function GetACreatedFile: string;
 
-function CreateADatabase(ATitle,ACurrency,AFileName: string): Boolean;
+function CreateADatabase(ATitle,AFileName: string; ACurrency: TCurrency): Boolean;
 
 procedure ShowAboutBox;
 
@@ -92,7 +92,7 @@ begin
     end;
 end;
 
-function CreateADatabase(ATitle, ACurrency, AFileName: string): Boolean;
+function CreateADatabase(ATitle, AFileName: string; ACurrency: TCurrency): Boolean;
 var
   AConnection: TSQLite3Connection;
   ATransaction: TSQLTransaction;
@@ -160,17 +160,24 @@ begin
                   '(PROPERTY,VALUE) VALUES ' +
                   '(' + QuotedStr('ModifiedDate') + ',' + QuotedStr(FormatDateTime('yyyy/mm/dd hh:nn:ss',Now)) + ');');
 
+      // insert BaseCurrency property on table CURRENCY
+       AConnection.ExecuteDirect(
+                   'INSERT INTO CURRENCY ' +
+                   '(NAME,CODE,PREFIXSYMBOL,SUFFIXSYMBOL,FRACTION) VALUES ' +
+                   '(' + QuotedStr(ACurrency.Name) + ',' + QuotedStr(ACurrency.Code) + ',' + QuotedStr(ACurrency.PrefixSymbol) + ',' + QuotedStr(ACurrency.SuffixSymbol) + ',' + FloatToStr(ACurrency.NegotiatedFraction) + ');');
+
+
       // insert DBTitle property on table DBINFO
       AConnection.ExecuteDirect(
                   'INSERT INTO DBINFO ' +
                   '(PROPERTY,VALUE) VALUES ' +
                   '(' + QuotedStr('DBTitle') + ',' + QuotedStr(ATitle) + ');');
       // insert BaseCurrency property on table DBINFO
-       AConnection.ExecuteDirect(
+{       AConnection.ExecuteDirect(
                    'INSERT INTO DBINFO ' +
                    '(PROPERTY,VALUE) VALUES ' +
                    '(' + QuotedStr('BaseCurrency') + ',' + QuotedStr(ACurrency) + ');');
-
+}
 
 
 

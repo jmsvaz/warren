@@ -28,12 +28,23 @@ uses
 
 type
 
- TCurrency = record
-   Name: string;
-   Code: string;
-   PrefixSymbol: string;
-   SuffixSymbol: string;
-   NegotiatedFraction: Double;
+ { TCurrency }
+
+ TCurrency = class
+ private
+   fCode: string;
+   fName: string;
+   fNegotiatedFraction: Double;
+   fPrefixSymbol: string;
+   fSuffixSymbol: string;
+ public
+   constructor Create(AName, ACode, APrefixSymbol, ASuffixSymbol: string;
+     ANegotiatedFraction: Double);
+   property Name: string read fName;
+   property Code: string read fCode;
+   property PrefixSymbol: string read fPrefixSymbol;
+   property SuffixSymbol: string read fSuffixSymbol;
+   property NegotiatedFraction: Double read fNegotiatedFraction;
  end;
 
  { TCustomCurrencyList }
@@ -90,17 +101,30 @@ type
       function ISO4217CurrencyByName(AName: string): TCurrency;
       property CurrencyLists: TStringList read GetCurrencyLists;
       property ISO4217Currencies: TStringList read GetISO4217Currencies;
-
     end;
 
 
 
 var
-  CurrencyManager: TCurrencyManager; //TODO: change this to specific currency types manager (ISO4217, Stocks, Mutua Funds, etc)
+  CurrencyManager: TCurrencyManager;
 
 implementation
 
 uses math;
+
+
+{ TCurrency }
+
+constructor TCurrency.Create(AName, ACode, APrefixSymbol, ASuffixSymbol: string;
+  ANegotiatedFraction: Double);
+begin
+  fName:= AName;
+  fCode:= ACode;
+  fPrefixSymbol:= APrefixSymbol;
+  fSuffixSymbol:= ASuffixSymbol;
+  fNegotiatedFraction:= ANegotiatedFraction;
+end;
+
 
 { TISO4217CurrencyList }
 
@@ -114,6 +138,7 @@ const
      ('EuroZone','Euro','EUR','978','2')
     );
 
+
 function TISO4217CurrencyList.GetCurrencyListName: string;
 begin
   Result:= 'ISO4217 Currency';
@@ -126,14 +151,7 @@ end;
 
 function TISO4217CurrencyList.ToCurrency(ACurrency: TStringList): TCurrency;
 begin
-  with Result do
-    begin
-      Name:= ACurrency[1];
-      Code:= ACurrency[2];
-      PrefixSymbol:= ACurrency[2];
-      SuffixSymbol:= '';
-      NegotiatedFraction:= Power(10,StrToInt(ACurrency[4]));
-    end;
+  Result:= TCurrency.Create(ACurrency[1],ACurrency[2],ACurrency[2],'',Power(10,StrToInt(ACurrency[4])));
 end;
 
 function TISO4217CurrencyList.ToStringList(ACurrencyIndex: Integer
@@ -175,7 +193,7 @@ begin
   fCurrencyProperties:= TStringList.Create;
   fCurrencyList.BeginUpdate;
   for i:= 0 to (GetCurrencyCount - 1) do
-    fCurrencyList.AddObject(ToStringList(i)[0],ToStringList(i));
+    fCurrencyList.AddObject(ToStringList(i)[1],ToStringList(i));
   fCurrencyList.EndUpdate;
 end;
 
@@ -230,7 +248,7 @@ end;
 constructor TCurrencyManager.Create;
 begin
   fCurrencyList:= TStringList.Create;
-  RegisterCurrencyList(TISO4217CurrencyList.Create);
+  RegisterCurrencyList(TISO4217CurrencyList.Create); // this is ALWAYS the first
 end;
 
 destructor TCurrencyManager.Destroy;

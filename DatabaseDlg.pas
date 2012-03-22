@@ -149,7 +149,7 @@ begin
   // TODO: choose a better error message and transform to resourcestring
   if CheckValues(error) then
     begin
-      if CreateADatabase(edName.Text,cbCurrency.Text,edFileName.Text) then
+      if CreateADatabase(edName.Text,edFileName.Text, CurrencyManager.ISO4217CurrencyByName(cbCurrency.Text)) then
         ModalResult:= mrOK
       else
         error:= 'could not create database';
