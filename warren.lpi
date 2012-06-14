@@ -57,6 +57,7 @@
             </CompilerMessages>
             <CompilerPath Value="$(CompPath)"/>
           </Other>
+          <LCLWidgetType Value="gtk2"/>
         </CompilerOptions>
       </Item2>
     </BuildModes>
@@ -89,6 +90,7 @@
         <Filename Value="MainFrm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainFrm"/>
       </Unit1>
@@ -96,6 +98,7 @@
         <Filename Value="AccountDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AccountEditorDialog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AccountDlg"/>
       </Unit2>
@@ -110,6 +113,7 @@
         <Filename Value="CurrencyDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CurrencyEditorDialog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CurrencyDlg"/>
       </Unit4>
@@ -138,6 +142,7 @@
         <Filename Value="WelcomeDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="WelcomeDialog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WelcomeDlg"/>
       </Unit8>
@@ -145,6 +150,7 @@
         <Filename Value="MainDM.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainDM"/>
       </Unit9>
@@ -170,6 +176,7 @@
         <Filename Value="DatabaseDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DatabaseDialog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DatabaseDlg"/>
       </Unit13>
@@ -202,6 +209,7 @@
       </CompilerMessages>
       <CompilerPath Value="$(CompPath)"/>
     </Other>
+    <LCLWidgetType Value="gtk2"/>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
