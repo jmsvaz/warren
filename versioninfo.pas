@@ -86,7 +86,7 @@ type
 implementation
 
 uses
-   resource, LCLVersion, InterfaceBase;
+   resource, LCLVersion, InterfaceBase, LCLPlatformDef;
 
 function VersionInfoToStr(VI: TVersionInfo): String;
 begin
@@ -184,7 +184,7 @@ end;
 function TProductInfo.GetWidgetSet: String;
 begin
   if Assigned(interfacebase.WidgetSet) then
-    Result:= LCLPlatformDirNames[interfacebase.WidgetSet.LCLPlatform]
+    Result:= LCLPlatformDisplayNames[GetBuildLCLWidgetType]
 end;
 
 constructor TProductInfo.Create;

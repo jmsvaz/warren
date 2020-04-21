@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="9"/>
+    <Version Value="11"/>
     <General>
       <Flags>
         <MainUnitHasUsesSectionForAllUnits Value="False"/>
@@ -21,17 +21,11 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
       <Language Value="0809"/>
-      <StringTable Comments="http://github.com/jmsvaz/warren" FileDescription="Personal Finance Software" LegalCopyright="Copyright © 2012 João Marcelo S. Vaz" LegalTrademarks="Free software released under GPLv3" ProductName="Personal Finance Software" ProductVersion=""/>
+      <StringTable Comments="http://github.com/jmsvaz/warren" FileDescription="Personal Finance Software" LegalCopyright="Copyright © 2012 João Marcelo S. Vaz" LegalTrademarks="Free software released under GPLv3" ProductName="Personal Finance Software"/>
     </VersionInfo>
-    <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="gtk2"/>
-    </MacroValues>
     <BuildModes Count="2">
       <Item1 Name="GTK2" Default="True"/>
       <Item2 Name="Win32">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="win32"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <SearchPaths>
@@ -51,26 +45,24 @@
               </Win32>
             </Options>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <UseMsgFile Value="True"/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
-          <LCLWidgetType Value="gtk2"/>
         </CompilerOptions>
       </Item2>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
-      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
-      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
     </PublishOptions>
     <RunParams>
       <local>
-        <FormatVersion Value="1"/>
         <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default">
+          <local>
+            <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+          </local>
+        </Mode0>
+      </Modes>
     </RunParams>
     <RequiredPackages Count="2">
       <Item1>
@@ -84,7 +76,6 @@
       <Unit0>
         <Filename Value="warren.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="warren"/>
       </Unit0>
       <Unit1>
         <Filename Value="MainFrm.pas"/>
@@ -92,7 +83,6 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="MainFrm"/>
       </Unit1>
       <Unit2>
         <Filename Value="AccountDlg.pas"/>
@@ -100,14 +90,12 @@
         <ComponentName Value="AccountEditorDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="AccountDlg"/>
       </Unit2>
       <Unit3>
         <Filename Value="TransactionDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="TransactionEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="TransactionDlg"/>
       </Unit3>
       <Unit4>
         <Filename Value="CurrencyDlg.pas"/>
@@ -115,28 +103,24 @@
         <ComponentName Value="CurrencyEditorDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="CurrencyDlg"/>
       </Unit4>
       <Unit5>
         <Filename Value="SecurityDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SecurityEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="SecurityDlg"/>
       </Unit5>
       <Unit6>
         <Filename Value="PayeeDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PayeeEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="PayeeDlg"/>
       </Unit6>
       <Unit7>
         <Filename Value="CategoryDlg.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CategoryEditorDialog"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="CategoryDlg"/>
       </Unit7>
       <Unit8>
         <Filename Value="WelcomeDlg.pas"/>
@@ -144,7 +128,6 @@
         <ComponentName Value="WelcomeDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="WelcomeDlg"/>
       </Unit8>
       <Unit9>
         <Filename Value="MainDM.pas"/>
@@ -152,7 +135,6 @@
         <ComponentName Value="dm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="MainDM"/>
       </Unit9>
       <Unit10>
         <Filename Value="AboutDlg.pas"/>
@@ -160,12 +142,10 @@
         <ComponentName Value="AboutDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="AboutDlg"/>
       </Unit10>
       <Unit11>
         <Filename Value="ProgramStrings.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ProgramStrings"/>
       </Unit11>
       <Unit12>
         <Filename Value="versioninfo.pas"/>
@@ -178,12 +158,10 @@
         <ComponentName Value="DatabaseDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="DatabaseDlg"/>
       </Unit13>
       <Unit14>
         <Filename Value="CurrencyMgr.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="CurrencyMgr"/>
       </Unit14>
     </Units>
   </ProjectOptions>
@@ -203,13 +181,6 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <CompilerMessages>
-        <UseMsgFile Value="True"/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
-    <LCLWidgetType Value="gtk2"/>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
